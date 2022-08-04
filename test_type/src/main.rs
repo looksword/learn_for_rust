@@ -3,6 +3,11 @@ fn arithmetic(m: i8, n: i8) {
     println!("{}", m + n);
 }
 
+struct Point {
+    x:i32,
+    y:i32
+}
+
 fn main() {
     let elem = 5u8;//由后缀推断类型
     let mut vec = Vec::new();
@@ -61,5 +66,36 @@ fn main() {
     }
     let nan = std::f32::NAN;
     println!("{} {} {}", nan < nan, nan > nan, nan == nan);//NAN不具备"全序"
+
+
+    //as
+    let i = 42;
+    //先转为 *const i32,再转为 *mut i32
+    let p = &i as *const i32 as *mut i32;
+    println!("{:p}",p);
+
+    //tuple
+    let p = (1i32,2i32);
+    let (a,b) = p;//模式匹配
+    let x = p.0;//数字索引
+    let y = p.1;
+    println!("{} {} {} {}",a,b,x,y);
+
+    //struct
+    let p = Point{x:1,y:2};
+    println!("Point is at {},{}",p.x,p.y);
+    let Point{x:px,y:py} = p;
+    println!("Point is at {},{}",px,py);
+
+    //tuple struct
+    struct Color(i32,i32,i32);
+    struct T1{v:i32}//define struct
+    struct T2(i32);//define tuple struct
+    let v1 = T1{v:1};
+    let v2 = T2(2);
+    let v3 = T2{0:3};
+    println!("{},{},{}",v1.v,v2.0,v3.0);
+
+    
 
 }
