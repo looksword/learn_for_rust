@@ -96,6 +96,16 @@ fn main() {
     let v3 = T2{0:3};
     println!("{},{},{}",v1.v,v2.0,v3.0);
 
-    
+    //enum类型Option<T>   可以是一个T类型的值，或者没有任何值
+    //enum Option<T> {
+    // None,
+    // Some(T),
+    //}
+    let arr = [1,2,3,4,5];
+    let v:Vec<Option<&i32>> = arr.iter().map(Some).collect();
+    println!("{:?}",v);
+
+
+
 
 }
